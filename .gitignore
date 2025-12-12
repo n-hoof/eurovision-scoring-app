@@ -18,8 +18,7 @@ app/dist-ssr/
 # Environment variables
 app/.env.local
 app/.env.*.local
-supabase/.env.local
-supabase/.env.*.local
+.env.local
 
 # TypeScript
 app/*.tsbuildinfo

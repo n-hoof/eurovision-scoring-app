@@ -1086,7 +1086,7 @@ INSERT INTO "public"."esc_entries" ("id", "year", "artist", "song_title", "count
 	(882, 2024, 'Sarah Bonnici', 'Loop', 34),
 	(883, 2024, 'Natalia Barbu', 'In the Middle', 35),
 	(884, 2024, 'Joost Klein', 'Europapa', 39),
-	(885, 2024, '', 'Ulveham', 42),
+	(885, 2024, 'Gåte', 'Ulveham', 42),
 	(886, 2024, 'Luna', 'The Tower', 43),
 	(887, 2024, 'Iolanda', 'Grito', 44),
 	(888, 2024, 'Megara', '11:11', 47),

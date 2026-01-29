@@ -1,28 +1,18 @@
-import './App.css'
-import { useState, useEffect } from 'react'
-import { supabase } from './supabaseClient'
-import type { Session } from '@supabase/supabase-js'
-import Auth from './Auth'
-import Account from './Account'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import MyScores from "./pages/MyScores";
+import YearMyScores from "./pages/YearMyScores";
 
-function App() {
-  const [session, setSession] = useState<Session | null>(null)
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-    })
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [])
-
+export default function App() {
   return (
-    <div className="container" style={{ padding: '50px 0 100px 0' }}>
-      {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/myscores" element={<MyScores />} />
+        <Route path="/myscores/:year" element={<YearMyScores />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App

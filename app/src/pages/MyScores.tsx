@@ -8,6 +8,7 @@ import { useAuth } from "../hooks/useAuth";
 export default function MyScores() {
     const { user, loading } = useAuth();
     const ESC_YEARS = ["2025", "2024", "2023", "2022"];
+    // const PZE_YEARS = ["2026"];
 
     if (loading) return <div>Loading...</div>;
     if (!user) return <Navigate to="/" />; 
@@ -22,6 +23,14 @@ export default function MyScores() {
                     </li>
                 ))}
             </ul>
+            {/* <h1>My PZE Scores</h1>
+            <ul>
+                {PZE_YEARS.map(year => (
+                    <li key={year}>
+                        <Link to={year}>{year}</Link>
+                    </li>
+                ))}
+            </ul> */}
         </div>
     )
 }

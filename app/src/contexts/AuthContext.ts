@@ -7,8 +7,4 @@ export type AuthContextType = {
     loading: boolean;
 };
 
-export const AuthContext = createContext<AuthContextType>({
-    session: null,
-    user: null,
-    loading: true,
-});
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);

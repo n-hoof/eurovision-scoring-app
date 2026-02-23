@@ -609,6 +609,62 @@ INSERT INTO "public"."esc_real_scores" ("id", "entry_id", "jury", "televote", "p
 -- Data for Name: pze_entries; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO "public"."pze_entries" ("year", "artist", "song_title") VALUES
+(2026, 'Mirna', 'Omaja'),
+(2026, 'Kosmos trip', 'Sve je u redu'),
+(2026, 'Iva Grujin', 'Otkrivam sebe'),
+(2026, 'Eegor', 'Klaber'),
+(2026, 'Makao', 'Daj nam svet'),
+(2026, 'Lores', 'Unseen'),
+(2026, 'Manivi', 'Svaki dan'),
+(2026, 'Bella', 'Trampolina'),
+(2026, 'Yanx', 'Srušio se sve'),
+(2026, 'Zejna', 'Jugoslavija'),
+(2026, 'Ana Mašulović', 'Zavoli me'),
+(2026, 'Đurđica', 'Moma mala'),
+(2026, 'Aleksandar', 'Sudbina'),
+(2026, 'Milica Burazer', 'Svima vama treba mama'),
+(2026, 'Sanja Aleksić', 'Ko me proba'),
+(2026, 'Lu-ka', 'Veruj'),
+(2026, 'Jack Lupino', 'Adrenalin'),
+(2026, 'Zona', 'Čairi'),
+(2026, 'Brat Pelin', 'Fräulein'),
+(2026, 'Geminni', 'Metar sreće'),
+(2026, 'Avgust', 'Jabuka'),
+(2026, 'Harem Girls & Ivana', 'Bom Bom'),
+(2026, 'Aleksandra Sekulić', 'Kule'),
+(2026, 'Lavina', 'Kraj mene');
+
+
+--
+-- Data for Name: pze_real_scores; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "public"."pze_real_scores" ("entry_id", "round") VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(13, 2),
+(14, 2),
+(15, 2),
+(16, 2),
+(17, 2),
+(18, 2),
+(19, 2),
+(20, 2),
+(21, 2),
+(22, 2),
+(23, 2),
+(24, 2);
 
 
 --

@@ -1,7 +1,7 @@
 -- Create a table for public profiles
 create table profiles (
   id uuid references auth.users not null primary key,
-  username text unique,
+  username text not null unique,
   fav_entry_id bigint references public.esc_entries on delete set null,
   country_id bigint references public.countries on delete set null,
   constraint username_length check (char_length(username) >= 3)
@@ -26,7 +26,7 @@ set search_path = ''
 as $$
 begin
   insert into public.profiles (id, username)
-  values (new.id, new.raw_user_meta_data->>'username');
+  values (new.id, split_part(new.email, '@', 1));
   return new;
 end;
 $$ language plpgsql security definer;

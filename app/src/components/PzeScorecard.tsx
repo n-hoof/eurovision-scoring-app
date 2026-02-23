@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { EscUserScore } from "../types/EscUserScore";
+import type { PzeUserScore } from "../types/PzeUserScore";
 
 const SONG_SCORES = [0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4];
 const OTHER_SCORES = [0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
@@ -12,13 +12,13 @@ interface ScoreSubmitPayload {
 }
 
 interface Props {
-    score: EscUserScore;
+    score: PzeUserScore;
     onClose: () => void;
     onSubmit: (payload: ScoreSubmitPayload) => void;
 
 }
 
-export function EscScorecard({ score, onClose, onSubmit }: Props) {
+export function PzeScorecard({score, onClose, onSubmit}: Props) {
     const[song, setSong] = useState<number>(score.song_score);
     const[costume, setCostume] = useState<number>(score.costume_score);
     const [staging, setStaging] = useState<number>(score.staging_score);
@@ -35,7 +35,7 @@ export function EscScorecard({ score, onClose, onSubmit }: Props) {
 
         onSubmit(payload);
     };
-
+    
     return (
         <div style={{
             position: "fixed",

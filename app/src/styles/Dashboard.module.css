@@ -1,0 +1,110 @@
+/* ---------------- DASHBOARD WRAPPER ---------------- */
+.dashboardWrapper {
+  flex: 1; /* fills available space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+}
+
+/* ---------------- WELCOME TEXT ---------------- */
+.welcomeText {
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow:
+    0 0 5px #00eaff,
+    0 0 10px #ff00ff,
+    0 0 20px #00eaff,
+    0 0 30px #ff00ff;
+  animation: neonFlicker 2s infinite alternate;
+}
+
+.username {
+  color: #ff00ff;
+  text-shadow:
+    0 0 5px #ff00ff,
+    0 0 15px #00eaff,
+    0 0 25px #ff00ff;
+}
+
+/* ---------------- CURRENT EVENTS TITLE ---------------- */
+.currentEvents {
+  font-size: 2rem;
+  color: #ff00ff;
+  text-shadow: 0 0 5px #ff00ff, 0 0 10px #00eaff;
+  margin-bottom: 1rem;
+}
+
+/* ---------------- CRT BUTTON ---------------- */
+.crtButton {
+  background-color: #0a0a0a;
+  border: 3px solid #00eaff;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  color: #00eaff;
+  font-weight: bold;
+  font-size: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 20px #00eaff,
+    0 0 40px #ff00ff,
+    0 0 60px #00eaff;
+  transition: all 0.2s ease-in-out;
+  animation: crtPulse 1.8s infinite alternate;
+}
+
+.crtButton:hover {
+  box-shadow:
+    0 0 25px #00eaff,
+    0 0 50px #ff00ff,
+    0 0 75px #00eaff,
+    inset 0 0 15px rgba(255,255,255,0.1);
+  transform: scale(1.05);
+}
+
+.buttonMain {
+  font-size: 3rem;
+  text-shadow:
+    0 0 5px #ff00ff,
+    0 0 10px #00eaff,
+    0 0 20px #ff00ff;
+}
+
+.buttonSub {
+  font-size: 1rem;
+  color: #aaa;
+  text-shadow: 0 0 3px #fff, 0 0 5px #ff00ff;
+  margin-top: 0.3rem;
+}
+
+/* ---------------- LOADING ---------------- */
+.loading {
+  font-size: 1.5rem;
+  color: #ff00ff;
+  text-shadow: 0 0 8px #ff00ff, 0 0 12px #00eaff;
+  text-align: center;
+  animation: neonFlicker 2.5s infinite;
+}
+
+/* ---------------- ANIMATIONS ---------------- */
+@keyframes neonFlicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 0.8; }
+  95% { opacity: 0.4; }
+  97% { opacity: 0.9; }
+}
+
+@keyframes crtPulse {
+  0% { box-shadow: 0 0 20px #00eaff, 0 0 40px #ff00ff; }
+  50% { box-shadow: 0 0 25px #00eaff, 0 0 50px #ff00ff; }
+  100% { box-shadow: 0 0 20px #00eaff, 0 0 40px #ff00ff; }
+}

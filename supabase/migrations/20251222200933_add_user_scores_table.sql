@@ -8,7 +8,7 @@ create table esc_user_scores (
   costume_score numeric(3,2) not null check (costume_score >= 0.00 and costume_score <= 2.00),
   staging_score numeric(3,2) not null check (staging_score >= 0.00 and staging_score <= 2.00),
   performance_score numeric(3,2) not null check (performance_score >= 0.00 and performance_score <= 2.00),
-  total numeric(3,2) generated always as (song_score + costume_score + staging_score + performance_score) stored,
+  total numeric(4,2) generated always as (song_score + costume_score + staging_score + performance_score) stored,
   constraint esc_user_scores_akey unique (user_id, entry_id, is_final)
 );
 

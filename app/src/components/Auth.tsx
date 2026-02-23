@@ -1,47 +1,39 @@
-import { useState } from 'react'
-import { supabase } from '../supabaseClient'
+import { useState } from "react";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import styles from "../styles/Auth.module.css";
 
 export default function Auth() {
-  const [loading, setLoading] = useState(false)
-  const [email, setEmail] = useState('')
+    const [activeForm, setActiveForm] = useState<'signIn' | 'signUp'>('signIn');
 
-  const handleLogin = async (event: React.FormEvent) => {
-    event.preventDefault()
 
-    setLoading(true)
-    const { error } = await supabase.auth.signInWithOtp({ email })
-
-    if (error) {
-      alert(error.message)
-    } else {
-      alert('Check your email for the login link!')
-    }
-    setLoading(false)
-  }
 
   return (
-    <div className="row flex flex-center">
-      <div className="col-6 form-widget">
-        <h1 className="header">Sign In</h1>
-        <p className="description">Sign in via magic link with your email below</p>
-        <form className="form-widget" onSubmit={handleLogin}>
-          <div>
-            <input
-              className="inputField"
-              type="email"
-              placeholder="Your email"
-              value={email}
-              required={true}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div>
-            <button className={'button block'} disabled={loading}>
-              {loading ? <span>Loading</span> : <span>Send magic link</span>}
-            </button>
-          </div>
-        </form>
+    <div className={styles.authWrapper}>
+      <h1 className={styles.authTitle}>MY euro VISION</h1>
+      <p className={styles.authSubtitle}>
+        Join today and cement your EuroVision scores in history!
+      </p>
+      {/* Toggle buttons */}
+      <div className={styles.toggleButtons}>
+        <button
+          onClick={() => setActiveForm('signIn')}
+          className={`${styles.toggleButton} ${activeForm === 'signIn' ? styles.toggleButtonActive : ''}`}
+        >
+          Sign IN
+        </button>
+        <button
+          onClick={() => setActiveForm('signUp')}
+          className={`${styles.toggleButton} ${activeForm === 'signUp' ? styles.toggleButtonActive : ''}`}
+        >
+          Sign UP
+        </button>
+      </div>
+
+      {/* Display the selected form */}
+      <div>
+        {activeForm === 'signIn' ? <SignIn /> : <SignUp />}
       </div>
     </div>
-  )
+  );
 }

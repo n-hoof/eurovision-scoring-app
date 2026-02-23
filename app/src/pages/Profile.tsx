@@ -1,149 +1,95 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../supabaseClient';
 import { useAuth } from '../hooks/useAuth';
-import { Navigate, Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useProfile } from '../hooks/useProfile';
+import { useCountries } from '../queries/useCountries';
+import styles from "../styles/Profile.module.css";
 
-interface Country {
-  id: number;
-  country: string;
-  flag_url: string | null;
-}
 
-// Add later, when adding function for user to select a favourite entry
-
-// interface EscEntry {
-//   id: number;
-//   country_id: number;
-//   year: number;
-//   artist: string;
-//   song_title: string;
-// }
 
 export default function Profile() {
-  const { user, loading } = useAuth();
-  const [profileLoading, setProfileLoading] = useState(true)
-  const [username, setUsername] = useState<string | null>(null)
-  const [userCountryId, setUserCountryId] = useState<number | null>(null)
-  const [countries, setCountries] = useState<Country[]>([])
+  const { user, loading: authLoading } = useAuth();
+  const { profile, loading: profileLoading, updateProfile } = useProfile();
+  const { data: countries = [], isLoading: countriesLoading } = useCountries();
+
+  const [formUsername, setFormUsername] = useState('');
+  const [formCountryId, setFormCountryId] = useState<number | null>(null);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    let isMounted = true;
-    
-    if (!user) {
-      setProfileLoading(false)
-      return
+    if(profile) {
+      setFormUsername(profile.username);
+      setFormCountryId(profile.country_id);
     }
+  }, [profile]);
 
-    async function getProfile() {
-      setProfileLoading(true)
-
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('username, country_id')
-        .eq('id', user!.id)
-        .single()
-
-      if (error) console.warn(error);
-      if (data && isMounted) {
-        setUsername(data.username);
-        setUserCountryId(data.country_id);
-      }
-      setProfileLoading(false);
-    }
-
-    async function getCountries() {
-      const { data, error } = await supabase
-        .from('countries')
-        .select('id, country, flag_url')
-        .order('country')
-
-      if (error) console.warn(error);
-      if (data && isMounted) setCountries(data);
-    }
-
-    getProfile();
-    getCountries();
-    
-    return () => { isMounted = false; };
-  }, [user, loading]);
-
-  if (loading) return <div>Loading...</div>;
-  
+  if (authLoading || profileLoading || countriesLoading) return <div>Loading...</div>;
   if (!user) return <Navigate to="/" />;
 
-  async function updateProfile(event: React.FormEvent) {
-    event.preventDefault()
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSaving(true);
 
-    setProfileLoading(true)
+    try {
+      await updateProfile({
+        username: formUsername,
+        country_id: formCountryId,
+      });
+    } catch (error) {
+      alert(`Error updating profile: ${error}`);
+    }
 
-    const { error } = await supabase.from('profiles').upsert({
-      id: user!.id,
-      username,
-      country_id: userCountryId,
-    })
-
-    if (error) {
-      alert(error.message)
-    } 
-    setProfileLoading(false)
+    setSaving(false);
   }
 
   return (
-    <form onSubmit={updateProfile} className="form-widget">
-      <h2>Your Profile</h2>
-      
-      <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={user.email} disabled />
-      </div>
+    <div className={styles.profileWrapper}>
+      <form onSubmit={handleSubmit} className={styles.profileForm}>
+        <h2 className={styles.profileTitle}>Your Profile</h2>
 
-      <div>
-        <label htmlFor="username">Name</label>
-        <input
-          id="username"
-          type="text"
-          required
-          value={username || ''}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
+        <div className={styles.formGroup}>
+          <label>Email</label>
+          <input type="text" value={user.email} disabled />
+        </div>
 
-      <div>
-        <label htmlFor="country">Your Country</label>
-        <select
-          id="country"
-          value={userCountryId || ''}
-          onChange={(e) => setUserCountryId(e.target.value ? parseInt(e.target.value) : null)}
+        <div className={styles.formGroup}>
+          <label>Name</label>
+          <input
+            type="text"
+            required
+            minLength={3}
+            pattern="^[a-zA-Z0-9._\\-]*$"
+            title="Please enter a valid name (letters and spaces only)"
+            value={formUsername}
+            onChange={(e) => setFormUsername(e.target.value)}
+          />
+        </div>
+
+        <div className={styles.formGroup}>
+          <label>Country</label>
+          <select
+            value={formCountryId ?? ""}
+            onChange={(e) =>
+              setFormCountryId(e.target.value ? parseInt(e.target.value) : null)
+            }
           >
-          <option value="">Choose a country to represent!</option>
-          {countries.map((country) => (
-            <option key={country.id} value={country.id}>
-              {country.country}
-            </option>
-          ))}
-        </select>
-      </div>
+            <option value="">Choose a country to represent!</option>
+            {countries.map((country) => (
+              <option key={country.id} value={country.id}>
+                {country.country}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div>
-        <button className="button block primary" type="submit" disabled={profileLoading}>
-          {profileLoading ? 'Loading ...' : 'Update'}
+        <button
+          className={`${styles.button} ${styles.signOut}`}
+          type="submit"
+          disabled={saving}
+        >
+          {saving ? "Saving..." : "Update"}
         </button>
-      </div>
-
-      <div>
-        <button className="button block" type="button" onClick={() => supabase.auth.signOut()}>
-          Sign Out
-        </button>
-      </div>
-
-      <div>
-        <Link to="/">Go to your dashboard</Link>
-      </div>
-
-      <div>
-        <Link to ="/myscores">See your scores</Link>
-      </div>
-
-    </form>
-  )
+      </form>
+    </div>
+  );
 }

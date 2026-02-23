@@ -1,21 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../supabaseClient";
-import { escUserScoresKey } from "../queries/queryKeys";
-import type { UserScore } from "../types/UserScore";
+import { pzeUserScoresKey } from "./queryKeys";
+import type { PzeUserScore } from "../types/PzeUserScore";
 
 
-export function useEscUserScores(
+export function usePzeUserScores(
     user_id: string,
     year: number,
     round: number,
     enabled: boolean
 ) {
     return useQuery({
-        queryKey: escUserScoresKey(user_id, year, round),
+        queryKey: pzeUserScoresKey(user_id, year, round),
         enabled,
-        queryFn: async (): Promise<UserScore[]> => {
+        queryFn: async (): Promise<PzeUserScore[]> => {
             const { data, error } = await supabase
-                .from('esc_user_scores')
+                .from('pze_user_scores')
                 .select(
                     `
                     entry_id,
@@ -25,19 +25,16 @@ export function useEscUserScores(
                     performance_score,
                     total,
                     is_scored,
-                    ...esc_entries!inner(
+                    round,
+                    ...pze_entries!inner(
                     artist,
-                    song_title,
-                    ...countries!inner(
-                        country,
-                        flag_url
-                    )
+                    song_title
                     )
                     `,
                 )
                 .eq('user_id', user_id)
                 .eq('round', round)
-                .eq('esc_entries.year', year);
+                .eq('pze_entries.year', year);
 
             if (error) throw error;
 
@@ -52,8 +49,6 @@ export function useEscUserScores(
                 is_scored: s.is_scored,
                 artist: s.artist,
                 song_title: s.song_title,
-                country: s.country,
-                flag_url: s.flag_url,
             }));
         }
     });

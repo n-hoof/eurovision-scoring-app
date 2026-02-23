@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../supabaseClient";
-import { escScoringStatusKey } from "../queries/queryKeys";
+import { escScoringStatusKey } from "./queryKeys";
 
 export function useEscScoringStatus(
     user_id: string,

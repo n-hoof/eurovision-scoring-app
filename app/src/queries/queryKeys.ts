@@ -2,10 +2,24 @@ export const escScoringStatusKey = (
     user_id: string,
     year: number,
     round: number
-) => ['scoring-status', user_id, year, round];
+) => ['esc-scoring-status', user_id, year, round];
 
 export const escUserScoresKey = (
     user_id: string,
     year: number,
     round: number
-) => ['user-scores', user_id, year, round];
+) => ['esc-user-scores', user_id, year, round];
+
+export const pzeScoringStatusKey = (
+    user_id: string,
+    year: number,
+    round: number
+) => ['pze-scoring-status', user_id, year, round];
+
+export const pzeUserScoresKey = (
+    user_id: string,
+    year: number,
+    round: number
+) => ['pze-user-scores', user_id, year, round];
+
+export const countriesKey = ['countries'] as const;

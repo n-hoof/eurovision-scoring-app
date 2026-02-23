@@ -1,0 +1,52 @@
+.scoresWrapper {
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: #1a1a1a00;
+  text-align: center;
+  color: #fff;
+}
+
+/* Flex container for the two lists */
+.listsContainer {
+  display: flex;
+  justify-content: space-around; /* space between the lists */
+  gap: 2rem; /* optional spacing */
+  flex-wrap: wrap; /* wrap on small screens */
+  margin-top: 5rem;
+}
+
+.listWrapper {
+  flex: 1; /* each list takes equal space */
+  min-width: 300px; /* ensures it doesn’t shrink too much */
+}
+
+.neonTitle {
+  font-size: 2.5rem;
+  color: #ff00ff;
+  text-shadow: 0 0 6px #ff00ff5f, 0 0 12px #ff00ffbc;
+  margin-bottom: 1rem;
+}
+
+.yearList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.yearList li {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.yearLink {
+  text-decoration: none;
+  color: #ffffff;
+  text-shadow: 0 0 5px #ff00ff;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.yearLink:hover {
+  color: #ff00ff;
+  text-shadow: 0 0 12px #ff00ff, 0 0 20px #00eaff;
+}

@@ -1,11 +1,11 @@
 import { useParams, Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import UserScoresTableESC from "../components/UserScoresTableESC";
-import { RoundSelectButton } from "../components/RoundSelectButton";
+import UserScoresTablePZE from "../components/UserScoresTablePZE";
 import { useState } from "react";
+import { RoundSelectButton } from "../components/RoundSelectButton";
 import styles from "../styles/ScoresNeon.module.css";
 
-export default function MyScoresYearESC() {
+export default function MyScoresYearPZE() {
     const { year } = useParams();
     const { user, loading } = useAuth();
     const [selectedRound, setSelectedRound] = useState<1 | 2 | 3>(1);
@@ -15,7 +15,6 @@ export default function MyScoresYearESC() {
 
     return (
 
-
         <div className={styles.page}>
             {/* Background effects */}
             <div className={styles.gridFloor}></div>
@@ -23,13 +22,14 @@ export default function MyScoresYearESC() {
             <div className={styles.neonHeart}></div>
 
             <div className={styles.pageWrapper}>
-                <h1 className={styles.neonTitle}>ESC {year}</h1>
+                <h1 className={styles.neonTitle}>PZE {year}</h1>
 
                 <RoundSelectButton round={selectedRound} onChange={setSelectedRound} />
 
-                <UserScoresTableESC year={parseInt(year)} round={selectedRound} />
+                <UserScoresTablePZE year={parseInt(year)} round={selectedRound} />
 
             </div>
         </div>
+
     )
 }

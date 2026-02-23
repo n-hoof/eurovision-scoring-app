@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../supabaseClient";
-import { escUserScoresKey } from "../queries/queryKeys";
+import { escUserScoresKey } from "./queryKeys";
 
 export function useEscUpdateScore(
     user_id: string,

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
-import type { EscUserScore } from "../types/EscUserScore";
-import { useEscScoringStatus } from "../queries/useEscScoringStatus";
-import { useEscUserScores } from "../queries/useEscUserScores";
-import { useEscInitScoring } from "../queries/useEscInitScoring";
-import { useEscUpdateScore } from "../queries/useEscUpdateScore";
-import { EscScorecard } from "./EscScorecard";
+import type { PzeUserScore } from "../types/PzeUserScore";
+import { usePzeScoringStatus } from "../queries/usePzeScoringStatus";
+import { usePzeUserScores } from "../queries/usePzeUserScores";
+import { usePzeInitScoring } from "../queries/usePzeInitScoring";
+import { usePzeUpdateScore } from "../queries/usePzeUpdateScore";
+import { PzeScorecard } from "./PzeScorecard";
 import styles from "../styles/ScoresNeon.module.css";
 
 
@@ -15,22 +15,22 @@ type Props = {
     round: number;
 };
 
-export default function UserScoresTableESC({ year, round }: Props) {
+export default function UserScoresTablePZE({ year, round }: Props) {
     const {user} = useAuth();
-    const [active, setActive] = useState<EscUserScore | null>(null);
+    const [active, setActive] = useState<PzeUserScore | null>(null);
 
-    const status = useEscScoringStatus(user!.id, year, round);
+    const status = usePzeScoringStatus(user!.id, year, round);
     const hasStarted = status.data === true;
 
-    const scores = useEscUserScores(
+    const scores = usePzeUserScores(
         user!.id,
         year,
         round,
         hasStarted
     );
 
-    const initScoring = useEscInitScoring(user!.id, year, round);
-    const updateScore = useEscUpdateScore(user!.id, year, round);
+    const initScoring = usePzeInitScoring(user!.id, year, round);
+    const updateScore = usePzeUpdateScore(user!.id, year, round);
 
     /* -------------------- STATUS STATES -------------------- */
 
@@ -100,7 +100,7 @@ export default function UserScoresTableESC({ year, round }: Props) {
             <table className={styles.neonTable}>
                 <thead className={styles.neonHeader}>
                 <tr>
-                    <th>Country</th>
+                    <th>Competitor</th>
                     <th>Song</th>
                     <th>Costume</th>
                     <th>Staging</th>
@@ -113,16 +113,7 @@ export default function UserScoresTableESC({ year, round }: Props) {
                 <tbody>
                 {scores.data!.map((s) => (
                     <tr key={s.entry_id} className={styles.neonRow}>
-                    <td className={styles.country}>
-                        <img
-                        src={s.flag_url}
-                        alt={s.country}
-                        width={40}
-                        height={25}
-                        className="flag-img"
-                        />
-                        {s.country}
-                    </td>
+                    <td className={styles.artist}>{s.artist} - "{s.song_title}"</td>
 
                     <td className={styles.score}>{s.is_scored ? s.song_score : "-"}</td>
                     <td className={styles.score}>{s.is_scored ? s.costume_score : "-"}</td>
@@ -161,7 +152,7 @@ export default function UserScoresTableESC({ year, round }: Props) {
         </div>
 
         {active && (
-            <EscScorecard
+            <PzeScorecard
             score={active}
             onClose={() => setActive(null)}
             onSubmit={(vals) => {

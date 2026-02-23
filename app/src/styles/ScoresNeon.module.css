@@ -1,45 +1,29 @@
-
-/* ---------- PAGE LAYOUT ---------- */
-body {
-  --custom-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-
-  margin: 0;
-  padding: 0;
-  font-family: var(--custom-font-family);
-  background-color: #101010;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.page-wrapper {
+/* ---------------- PAGE WRAPPER ---------------- */
+.pageWrapper {
   width: 100%;
   max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 10;
 }
 
-/* ---------- TITLE ---------- */
-.neon-title {
+/* ---------------- TITLE ---------------- */
+.neonTitle {
   font-size: 3rem;
   text-align: center;
   color: #fff;
   margin-bottom: 30px;
-  text-shadow: 0 0 5px #fff, 0 0 5px #ff00c8;
+  text-shadow: 0 0 5px #fff, 0 0 10px #ff00c8;
+  z-index: 5;
 }
 
-/* ---------- CRT TABLE ---------- */
-.table-center {
+/* ---------------- CRT TABLE ---------------- */
+.tableCenter {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  z-index: 10;
 }
 
 .crt {
@@ -50,22 +34,30 @@ body {
   filter: contrast(1.2) brightness(1.1);
 }
 
-/* subtle neon scrollbar */
-.crt::-webkit-scrollbar { width: 8px; }
-.crt::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 4px; }
+.crt::-webkit-scrollbar {
+  width: 8px;
+}
+
+.crt::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
+  border-radius: 4px;
+}
+
 .crt::-webkit-scrollbar-thumb {
   background: rgba(255,0,255,0.15);
   border-radius: 4px;
   box-shadow: 0 0 6px rgba(255,0,255,0.2);
 }
+
 .crt::-webkit-scrollbar-thumb:hover {
   background: rgba(255,0,255,0.25);
   box-shadow: 0 0 10px rgba(255,0,255,0.3);
 }
+
 .crt { scrollbar-width: thin; scrollbar-color: rgba(255,0,255,0.15) rgba(0,0,0,0.05); }
 
-/* ---------- TABLE STYLING ---------- */
-.neon-table {
+/* ---------------- TABLE ---------------- */
+.neonTable {
   width: 100%;
   border: none;
   font-family: 'Orbitron', sans-serif;
@@ -75,17 +67,16 @@ body {
   animation: neonPulse 3s infinite ease-in-out;
 }
 
-.neon-header th {
+.neonHeader th {
   position: sticky;
   top: 0;
   padding: 1rem;
   color: #fff;
   text-shadow: 0 0 8px #ff00ff;
-
-  background: rgba(0, 0, 0, 0.5); /* dark overlay */
+  background: rgba(0,0,0,0.5);
 }
 
-.neon-header th::before {
+.neonHeader th::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -97,28 +88,26 @@ body {
   border-radius: 4px;
 }
 
-
-
-.neon-row td {
+.neonRow td {
   padding: 0.5rem;
   border: none;
 }
 
-.neon-row:hover {
-  background: rgba(255, 0, 255, 0.15);
+.neonRow:hover {
+  background: rgba(255,0,255,0.15);
   box-shadow: 0 0 12px #ff00ff;
   transition: 0.3s;
 }
 
-/* ---------- FLAGS & TEXT ---------- */
-.flag-img { object-fit: cover; box-shadow: 0 0 8px #ff00ff; }
+/* ---------------- TEXT & FLAGS ---------------- */
+.flagImg { object-fit: cover; box-shadow: 0 0 8px #ff00ff; }
 .country { font-weight: bold; color: #ff00ff; text-shadow: 0 0 6px #ff00ff; }
 .artist { color: #00eaff; }
-.song-title { font-style: italic; color: #ffea00; text-shadow: 0 0 6px #ffea00; }
+.songTitle { font-style: italic; color: #ffea00; text-shadow: 0 0 6px #ffea00; }
 .score { color: #147aff; text-shadow: 0 0 6px #61cdff; }
 .total { color: #39ff14; text-shadow: 0 0 6px #39ff14; }
 
-/* ---------- ANIMATIONS ---------- */
+/* ---------------- ANIMATIONS ---------------- */
 @keyframes neonPulse {
   0%, 100% { box-shadow: 0 0 10px #ff00ff; }
   50% { box-shadow: 0 0 25px #ff00ff; }
@@ -138,8 +127,8 @@ body {
 
 .flicker { animation: flicker 2.5s infinite; }
 
-/* ---------- BACKGROUND EFFECTS ---------- */
-.grid-floor {
+/* ---------------- BACKGROUND EFFECTS ---------------- */
+.gridFloor {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -151,7 +140,7 @@ body {
     repeating-linear-gradient(to bottom, transparent 0 40px, rgba(0,234,255,0.25) 41px);
   transform: perspective(200px) rotateX(40deg);
   transform-origin: bottom;
-  z-index: 1;
+  z-index: 0;
   filter: blur(1px);
 }
 
@@ -178,8 +167,7 @@ body {
   100% { background-position: 200% 0; }
 }
 
-/* ---------- NEON HEART ---------- */
-.neon-heart {
+.neonHeart {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -194,8 +182,8 @@ body {
   opacity: 0.8;
 }
 
-.neon-heart::before,
-.neon-heart::after {
+.neonHeart::before,
+.neonHeart::after {
   content: "";
   position: absolute;
   width: 150px;
@@ -203,5 +191,39 @@ body {
   background: rgba(255,0,200,0.46);
   border-radius: 50%;
 }
-.neon-heart::before { top: -75px; left: 0; }
-.neon-heart::after { top: 0; left: 75px; }
+.neonHeart::before { top: -75px; left: 0; }
+.neonHeart::after { top: 0; left: 75px; }
+
+
+/* ---------- ROUND SELECT BUTTON ---------- */
+.roundSelect {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.roundSelect button {
+  padding: 0.5rem 1rem;
+  border: 2px solid #ff00ff;
+  background-color: transparent;
+  color: #ff00ff;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  text-shadow: 0 0 5px #ff00ff;
+  transition: all 0.2s ease-in-out;
+}
+
+.roundSelect button:hover {
+  background-color: rgba(255, 0, 255, 0.15);
+  box-shadow: 0 0 12px #ff00ff, 0 0 20px #00eaff;
+}
+
+.roundSelect button.selected {
+  background-color: #ff00ff;
+  color: #101010;
+  box-shadow: 0 0 15px #ff00ff, 0 0 25px #00eaff;
+  text-shadow: 0 0 6px #fff;
+}

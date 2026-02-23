@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../supabaseClient";
-import { escScoringStatusKey, escUserScoresKey } from "../queries/queryKeys";
+import { pzeScoringStatusKey, pzeUserScoresKey } from "./queryKeys";
 
-export function useEscInitScoring(
+export function usePzeInitScoring(
     user_id: string,
     year: number,
     round: number,
@@ -12,15 +12,15 @@ export function useEscInitScoring(
     return useMutation({
         mutationFn: async () => {
             const { data, error: entriesError } = await supabase
-                .from('esc_entries')
+                .from('pze_entries')
                 .select(
                     `
                     id,
-                    ...esc_real_scores!inner()
+                    ...pze_real_scores!inner()
                     `,
                 )
                 .eq('year', year)
-                .eq('esc_real_scores.round', round);
+                .eq('pze_real_scores.round', round);
 
             if (entriesError) throw entriesError;
 
@@ -31,14 +31,14 @@ export function useEscInitScoring(
             }));
 
             const { error: upsertError } = await supabase
-                .from('esc_user_scores')
+                .from('pze_user_scores')
 	            .upsert(initScores, { onConflict: 'user_id, entry_id, round', ignoreDuplicates: true });
 
             if (upsertError) throw upsertError;
         },
         onSuccess: () => {
-            qc.invalidateQueries({queryKey: escScoringStatusKey(user_id, year, round)});
-            qc.invalidateQueries({queryKey: escUserScoresKey(user_id, year, round)});
+            qc.invalidateQueries({queryKey: pzeScoringStatusKey(user_id, year, round)});
+            qc.invalidateQueries({queryKey: pzeUserScoresKey(user_id, year, round)});
         }
     });
 }

@@ -1,0 +1,111 @@
+/* ---------------- PROFILE WRAPPER ---------------- */
+.profileWrapper {
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #ff00ff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #ff00ff, 0 0 40px #00eaff67;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: 'Orbitron', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---------------- FORM TITLE ---------------- */
+.profileTitle {
+  font-size: 2.2rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 15px #00eaff;
+  margin-bottom: 1rem;
+  animation: flicker 2s infinite alternate;
+}
+
+/* ---------------- FORM ELEMENTS ---------------- */
+.profileForm label {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+/* Add spacing between each input/label group */
+.profileForm .formGroup {
+  margin-bottom: 1.5rem; /* adjust as needed */
+}
+
+.profileForm input,
+.profileForm select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background-color: #1a1a1a;
+  color: #fff;
+  font-size: 0.95rem;
+  box-shadow: inset 0 0 5px rgba(255,0,255,0.2), inset 0 0 10px rgba(0,234,255,0.15);
+  transition: all 0.2s ease-in-out;
+}
+
+.profileForm input:focus,
+.profileForm select:focus {
+  outline: none;
+  border-color: #ff00ff;
+  box-shadow: 0 0 8px #ff00ff, 0 0 12px #00eaff;
+}
+
+/* ---------------- BUTTONS ---------------- */
+.profileForm .button {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  border: 2px solid #ff00ff;
+  background-color: transparent;
+  cursor: pointer;
+  text-shadow: 0 0 5px #ff00ff;
+  transition: all 0.2s ease-in-out;
+}
+
+.profileForm .button:hover {
+  background-color: rgba(255, 0, 255, 0.15);
+  box-shadow: 0 0 15px #ff00ff, 0 0 25px #00eaff;
+}
+
+/* ---------------- SIGN OUT BUTTON ---------------- */
+.profileForm .button.update {
+  background-color: transparent;
+  color: #ff00ff;
+  border: 2px solid #ff00ff;
+  text-shadow: 0 0 5px #ff00ff;
+}
+
+.profileForm .button.update:hover {
+  background-color: rgba(255,0,255,0.2);
+  box-shadow: 0 0 15px #ff00ff, 0 0 25px #00eaff;
+}
+
+/* ---------------- LOADING ---------------- */
+.profileLoading {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #ff00ff;
+  text-shadow: 0 0 8px #ff00ff, 0 0 12px #00eaff;
+  animation: flicker 2.5s infinite;
+}
+
+/* ---------------- ANIMATIONS ---------------- */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 0.8; }
+  95% { opacity: 0.4; }
+  97% { opacity: 0.9; }
+}

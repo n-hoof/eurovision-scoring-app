@@ -1,0 +1,126 @@
+/* ---------------- AUTH WRAPPER ---------------- */
+.authWrapper {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 5rem;
+  padding: 2rem;
+  background-color: #1a1a1a00;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #ff00ff, 0 0 40px #d6eef049;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  overflow: hidden;
+}
+
+/* ---------------- TITLES ---------------- */
+.authTitle {
+  font-size: 2rem;
+  color: #ff00ff;
+  text-shadow: 0 0 6px #ff00ff, 0 0 12px #00eaff44;
+  margin-bottom: 0.5rem;
+  animation: flicker 2s infinite alternate;
+}
+
+.authSubtitle {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 1.5rem;
+}
+
+/* ---------------- TOGGLE BUTTONS ---------------- */
+.toggleButtons {
+  display: flex;
+  margin-bottom: 1.5rem;
+  gap: 0.5rem;
+}
+
+.toggleButton {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: 2px solid #ff00ff;
+  background-color: transparent;
+  color: #ff00ff;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  text-shadow: 0 0 5px #ff00ff;
+  transition: all 0.2s ease-in-out;
+}
+
+.toggleButtonActive {
+  background-color: #ff00ff !important;
+  color: #101010 !important;
+  box-shadow: 0 0 15px #ff00ff, 0 0 25px #00eaff !important;
+  text-shadow: 0 0 6px #fff !important;
+}
+
+/* Only hover non-active buttons */
+.toggleButton:not(.toggleButtonActive):hover {
+  background-color: rgba(255,0,255,0.15);
+  box-shadow: 0 0 12px #ff00ff, 0 0 20px #00eaff;
+}
+
+/* ---------------- FORM GROUPS ---------------- */
+.formGroup {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* ---------------- INPUTS ---------------- */
+.inputField {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background-color: #1a1a1a;
+  color: #fff;
+  font-size: 0.95rem;
+  box-shadow: inset 0 0 5px rgba(255,0,255,0.2), inset 0 0 10px rgba(0,234,255,0.15);
+  transition: all 0.2s ease-in-out;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #ff00ff;
+  box-shadow: 0 0 8px #ff00ff, 0 0 12px #00eaff;
+}
+
+/* ---------------- BUTTONS ---------------- */
+.button {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  border: 2px solid #ff00ff;
+  background-color: transparent;
+  cursor: pointer;
+  text-shadow: 0 0 5px #ff00ff;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-color: rgba(255,0,255,0.15);
+  box-shadow: 0 0 15px #ff00ff, 0 0 25px #00eaff;
+}
+
+/* ---------------- LOADING ---------------- */
+.loading {
+  font-size: 1rem;
+  color: #ff00ff;
+  text-shadow: 0 0 8px #ff00ff, 0 0 12px #00eaff;
+  text-align: center;
+  animation: flicker 2.5s infinite;
+}
+
+/* ---------------- ANIMATIONS ---------------- */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 0.8; }
+  95% { opacity: 0.4; }
+  97% { opacity: 0.9; }
+}

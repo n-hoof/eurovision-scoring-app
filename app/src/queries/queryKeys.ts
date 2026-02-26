@@ -23,3 +23,5 @@ export const pzeUserScoresKey = (
 ) => ['pze-user-scores', user_id, year, round];
 
 export const countriesKey = ['countries'] as const;
+
+export const usersKey = ['profiles'];

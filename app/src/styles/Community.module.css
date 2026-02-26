@@ -1,0 +1,60 @@
+/* ---------------- SECTION TITLE ---------------- */
+.title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-shadow:
+    0 0 6px rgba(255, 0, 255, 0.8),
+    0 0 12px rgba(255, 0, 255, 0.4);
+}
+
+/* ---------------- USER LIST ---------------- */
+.userList {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 2rem; /* center the list horizontally */
+  width: fit-content;   /* shrink to content width */
+  max-width: 480px;
+}
+
+/* ---------------- LIST ITEMS ---------------- */
+.userItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 6px;
+
+  color: #f5f5f5;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+
+  text-decoration: none; /* removes underline */
+
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.userItem:hover {
+  background: rgba(255, 0, 255, 0.12);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
+}
+
+/* ---------------- USERNAME ---------------- */
+.username {
+  flex: 1; /* takes up available space */
+}
+
+/* ---------------- FLAGS ---------------- */
+.flag {
+  width: 22px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 3px;
+}

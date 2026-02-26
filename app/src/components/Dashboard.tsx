@@ -21,7 +21,7 @@ export default function Dashboard() {
         onClick={() => navigate("/my-scores/pze/2026")}
       >
         <div className={styles.buttonMain}>PZE 2026</div>
-        <div className={styles.buttonSub}>SCORE SEMI FINAL 1 NOW</div>
+        <div className={styles.buttonSub}>SCORE SEMI FINAL 2 NOW</div>
       </button>
     </div>
   );

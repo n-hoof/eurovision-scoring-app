@@ -18,6 +18,8 @@ app/dist-ssr/
 # Environment variables
 app/.env.local
 app/.env.*.local
+app/.env
+.env
 .env.local
 
 # TypeScript

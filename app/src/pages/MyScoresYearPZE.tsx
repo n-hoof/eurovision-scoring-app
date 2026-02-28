@@ -8,7 +8,7 @@ import styles from "../styles/ScoresNeon.module.css";
 export default function MyScoresYearPZE() {
     const { year } = useParams();
     const { user, loading } = useAuth();
-    const [selectedRound, setSelectedRound] = useState<1 | 2 | 3>(2);
+    const [selectedRound, setSelectedRound] = useState<1 | 2 | 3>(3);
 
     if (loading) return <div>Loading...</div>;
     if (!user || !year) return <Navigate to="/" />;

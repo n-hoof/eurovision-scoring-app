@@ -8,7 +8,7 @@ import { supabase } from "../supabaseClient";
 
 export default function PublicProfile() {
   const { user_id } = useParams();
-  const [selectedRound, setSelectedRound] = useState<1 | 2 | 3>(2);
+  const [selectedRound, setSelectedRound] = useState<1 | 2 | 3>(1);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["profile", user_id],

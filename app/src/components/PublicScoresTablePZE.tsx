@@ -63,7 +63,13 @@ export default function PublicScoresTablePZE({
               {" - "}
               {activeScoreData?.song_title ?? ""}
             </h4>
-            <Comments comments={activeScoreData?.comments ?? []} user_id={user_id} year={year} round={round} contest={contest}/>
+            <Comments
+              comments={activeScoreData?.comments ?? []}
+              user_id={user_id}
+              year={year}
+              round={round}
+              contest={contest}
+            />
             <WriteCommentBox
               scoreId={activeScore}
               contest={contest}
@@ -106,7 +112,11 @@ export default function PublicScoresTablePZE({
               {scores.data!.map((s) => (
                 <tr
                   key={s.entry_id}
-                  className={styles.row}
+                  className={
+                    activeScore === s.id
+                      ? `${styles.row} ${styles.active}`
+                      : styles.row
+                  }
                   onClick={() =>
                     setActiveScore((prev) => (prev === s.id ? null : s.id))
                   }
@@ -114,7 +124,7 @@ export default function PublicScoresTablePZE({
                 >
                   <td>
                     {s.artist} - "{s.song_title}"
-                    <CommentIndicator comments={s.comments}/>
+                    <CommentIndicator comments={s.comments} />
                   </td>
 
                   <td>{s.is_scored ? s.song_score : "-"}</td>

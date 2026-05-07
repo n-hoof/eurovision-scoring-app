@@ -1,4 +1,7 @@
+import type { Comment } from "./Comment";
+
 export interface PzeUserScore {
+    id: number;
     entry_id: number;
     artist: string;
     song_title: string;
@@ -9,4 +12,5 @@ export interface PzeUserScore {
     performance_score: number;
     total: number;
     is_scored: boolean;
+    comments?: Comment[];
 }

@@ -16,6 +16,21 @@
   overflow: hidden;
 }
 
+/* ---------------- DELETE BUTTON ---------------- */
+.buttonDelete {
+  width: 30%;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ec1532;
+  border: 2px solid #292729;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
 /* ---------------- FORM TITLE ---------------- */
 .profileTitle {
   font-size: 2.2rem;

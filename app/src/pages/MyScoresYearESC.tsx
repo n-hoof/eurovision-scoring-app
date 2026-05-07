@@ -18,12 +18,10 @@ export default function MyScoresYearESC() {
 
         <div className={styles.page}>
             {/* Background effects */}
-            <div className={styles.gridFloor}></div>
-            <div className={styles.fog}></div>
             <div className={styles.neonHeart}></div>
 
             <div className={styles.pageWrapper}>
-                <h1 className={styles.neonTitle}>ESC {year}</h1>
+                <h1 className={styles.neonTitle}>Eurovision {year}</h1>
 
                 <RoundSelectButton round={selectedRound} onChange={setSelectedRound} />
 

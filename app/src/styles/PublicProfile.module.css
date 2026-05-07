@@ -1,0 +1,19 @@
+.title {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-shadow:
+    0 0 6px rgba(255, 0, 255, 0.8),
+    0 0 12px rgba(255, 0, 255, 0.4);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}

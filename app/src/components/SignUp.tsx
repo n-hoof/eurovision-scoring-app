@@ -6,6 +6,7 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [confirmEmail, setConfirmEmail] = useState('')
+  const [username, setUsername] = useState('')
 
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -18,7 +19,12 @@ export default function SignUp() {
     setLoading(true)
 
     const { error:signUpError } = await supabase.auth.signInWithOtp({ 
-      email
+      email,
+      options: {
+        data: {
+          username: username
+        }
+      }
     })
 
     if (signUpError) {
@@ -32,10 +38,26 @@ export default function SignUp() {
   return (
     <form className={styles.formWidget} onSubmit={handleLogin}>
       <div className={styles.formGroup}>
+        <label>Username</label>
+        <input 
+          className={styles.inputField}
+          type="text"
+          placeholder="Create a username"
+          value={username}
+          minLength={3}
+          pattern="[a-zA-Z0-9 ]+"
+          title="Please enter a valid name (letters, numbers and spaces only)"
+          required
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+
+      <div className={styles.formGroup}>
+        <label>Email</label>
         <input
           className={styles.inputField}
           type="email"
-          placeholder="Your email"
+          placeholder="Enter your email address"
           value={email}
           required
           onChange={(e) => setEmail(e.target.value)}
@@ -46,7 +68,7 @@ export default function SignUp() {
         <input
           className={styles.inputField}
           type="email"
-          placeholder="Confirm your email"
+          placeholder="Confirm your email address"
           value={confirmEmail}
           required
           onChange={(e) => setConfirmEmail(e.target.value)}

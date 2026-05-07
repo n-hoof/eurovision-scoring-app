@@ -1,0 +1,130 @@
+/* ---------------- CONTAINER ---------------- */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 14rem;
+}
+
+/* ---------------- WRAPPER ---------------- */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 180px;
+  height: 180px;
+
+  padding: 1rem;
+  border-radius: 10px;
+
+  gap: 5px;
+
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  text-align: center;
+
+  box-shadow: inset 0 0 10px rgba(255, 0, 255, 0.08);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.box {
+  margin: 1rem;
+  justify-content: center;
+}
+
+/* ---------------- TITLE ---------------- */
+.title {
+  font-weight: 700;
+  margin-top: 0.1rem;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  color: #ffffffec;
+
+  text-shadow:
+    0 0 2px rgba(255, 0, 255, 0.8),
+    0 0 6px rgba(255, 0, 255, 0.4);
+
+  text-decoration: underline rgb(59, 0, 59) 1px;
+}
+
+.head_title {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-decoration: underline rgb(59, 0, 59) 3px;
+}
+
+/* ---------------- MAIN WINNER TEXT ---------------- */
+.content {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ---------------- SECONDARY TEXT (optional) ---------------- */
+.subtext {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.score {
+  margin-top: 0.5rem;
+}
+
+.numerator {
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(255, 0, 255, 0.8);
+}
+
+.denomenator {
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+/* ---------------- HOVER EFFECT ---------------- */
+.wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 0 12px rgba(255, 0, 255, 0.15),
+    0 0 12px rgba(255, 0, 255, 0.15);
+}
+
+/* ---------------- CATEGORY VARIANTS ---------------- */
+/* optional but useful for visual distinction */
+
+.song {
+  border-top: 2px solid rgb(255, 0, 157);
+}
+
+.staging {
+  border-top: 2px solid rgba(52, 152, 219);
+}
+
+.costume {
+  border-top: 2px solid rgb(188, 15, 241);
+}
+
+.performance {
+  border-top: 2px solid rgb(55, 0, 255);
+}
+
+/* ---------------- FLAGS ---------------- */
+.flag {
+  width: 18px;
+  height: 12px;
+  object-fit: cover;
+  border-radius: 2px;
+  margin-right: 5px;
+}

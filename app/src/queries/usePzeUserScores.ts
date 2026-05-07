@@ -18,6 +18,7 @@ export function usePzeUserScores(
                 .from('pze_user_scores')
                 .select(
                     `
+                    id,
                     entry_id,
                     song_score,
                     costume_score,
@@ -29,6 +30,14 @@ export function usePzeUserScores(
                     ...pze_entries!inner(
                     artist,
                     song_title
+                    ),
+                    pze_comments(
+                    id,
+                    commenter_id,
+                    score_id,
+                    content,
+                    created_at,
+                    ...profiles!inner(username)
                     )
                     `,
                 )
@@ -39,6 +48,7 @@ export function usePzeUserScores(
             if (error) throw error;
 
             return data.map((s) => ({
+                id: s.id,
                 entry_id: s.entry_id,
                 round: s.round,
                 song_score: s.song_score,
@@ -49,6 +59,7 @@ export function usePzeUserScores(
                 is_scored: s.is_scored,
                 artist: s.artist,
                 song_title: s.song_title,
+                comments: s.pze_comments ?? [],
             }));
         }
     });

@@ -12,7 +12,7 @@ export default function Auth() {
     <div className={styles.authWrapper}>
       <h1 className={styles.authTitle}>MY euro VISION</h1>
       <p className={styles.authSubtitle}>
-        Join today and cement your EuroVision scores in history!
+        Join today and cement your Eurovision scores in history!
       </p>
       {/* Toggle buttons */}
       <div className={styles.toggleButtons}>
@@ -20,13 +20,13 @@ export default function Auth() {
           onClick={() => setActiveForm('signIn')}
           className={`${styles.toggleButton} ${activeForm === 'signIn' ? styles.toggleButtonActive : ''}`}
         >
-          Sign IN
+          Sign In
         </button>
         <button
           onClick={() => setActiveForm('signUp')}
           className={`${styles.toggleButton} ${activeForm === 'signUp' ? styles.toggleButtonActive : ''}`}
         >
-          Sign UP
+          Sign Up
         </button>
       </div>
 

@@ -39,6 +39,7 @@
   color: #ff00ff;
   text-shadow: 0 0 5px #ff00ff, 0 0 10px #00eaff;
   margin-bottom: 1rem;
+  z-index: 1;
 }
 
 /* ---------------- CRT BUTTON ---------------- */

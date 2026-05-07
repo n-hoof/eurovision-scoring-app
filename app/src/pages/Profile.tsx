@@ -1,29 +1,31 @@
-import { useState, useEffect } from 'react';
-import { useAuth } from '../hooks/useAuth';
-import { Navigate } from 'react-router-dom';
-import { useProfile } from '../hooks/useProfile';
-import { useCountries } from '../queries/useCountries';
+import { useState, useEffect } from "react";
+import { useAuth } from "../hooks/useAuth";
+import { Navigate } from "react-router-dom";
+import { useProfile } from "../hooks/useProfile";
+import { useCountries } from "../queries/useCountries";
+import { supabase } from "../supabaseClient";
 import styles from "../styles/Profile.module.css";
 
-
-
 export default function Profile() {
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, session } = useAuth();
   const { profile, loading: profileLoading, updateProfile } = useProfile();
   const { data: countries = [], isLoading: countriesLoading } = useCountries();
 
-  const [formUsername, setFormUsername] = useState('');
+  const [formUsername, setFormUsername] = useState("");
   const [formCountryId, setFormCountryId] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    if(profile) {
+    if (profile) {
       setFormUsername(profile.username);
       setFormCountryId(profile.country_id);
     }
   }, [profile]);
 
-  if (authLoading || profileLoading || countriesLoading) return <div>Loading...</div>;
+  if (authLoading || profileLoading || countriesLoading)
+    return <div>Loading...</div>;
   if (!user) return <Navigate to="/" />;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -42,6 +44,32 @@ export default function Profile() {
     setSaving(false);
   }
 
+  async function handleDelete() {
+    setIsDeleting(true);
+    try {
+      if (!user || !session) throw new Error("No user/session found");
+      const accessToken = session.access_token;
+
+      await supabase.functions.invoke("user-self-delete", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: {},
+      });
+
+      alert("Account deleted succesfully!");
+      
+      
+    } catch (error) {
+      alert("Error deleting account!");
+      console.log(error);
+    } finally {
+      setIsDeleting(false);
+      setIsModalOpen(false);
+      await supabase.auth.signOut();
+    }
+  }
+
   return (
     <div className={styles.profileWrapper}>
       <form onSubmit={handleSubmit} className={styles.profileForm}>
@@ -58,8 +86,8 @@ export default function Profile() {
             type="text"
             required
             minLength={3}
-            pattern="^[a-zA-Z0-9._\\-]*$"
-            title="Please enter a valid name (letters and spaces only)"
+            pattern="[a-zA-Z0-9 ]+"
+            title="Please enter a valid name (letters, numbers and spaces only)"
             value={formUsername}
             onChange={(e) => setFormUsername(e.target.value)}
           />
@@ -90,6 +118,32 @@ export default function Profile() {
           {saving ? "Saving..." : "Update"}
         </button>
       </form>
+
+      <div>
+        <button
+          className={styles.buttonDelete}
+          onClick={() => setIsModalOpen(true)}
+        >
+          Delete Account
+        </button>
+      </div>
+
+      {isModalOpen && (
+        <div className="modal-container">
+          <div className="modal-content">
+            <h2>Confirm Account Deletion</h2>
+            <p>Are you sure you want to delete your account?</p>
+            <div>
+              <button className={styles.buttonDelete} onClick={handleDelete} disabled={isDeleting}>
+                {isDeleting ? <span className="spinner" /> : "Confirm"}
+              </button>
+              <button className="button" onClick={() => setIsModalOpen(false)} disabled={isDeleting}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

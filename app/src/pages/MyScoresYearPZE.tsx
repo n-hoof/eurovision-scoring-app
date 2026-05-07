@@ -17,12 +17,10 @@ export default function MyScoresYearPZE() {
 
         <div className={styles.page}>
             {/* Background effects */}
-            <div className={styles.gridFloor}></div>
-            <div className={styles.fog}></div>
             <div className={styles.neonHeart}></div>
 
             <div className={styles.pageWrapper}>
-                <h1 className={styles.neonTitle}>PZE {year}</h1>
+                <h1 className={styles.neonTitle}>Pesma za Evroviziju {year}</h1>
 
                 <RoundSelectButton round={selectedRound} onChange={setSelectedRound} />
 

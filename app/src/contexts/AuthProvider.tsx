@@ -14,11 +14,33 @@ export function AuthProvider({ children }: Props) {
     useEffect(() => {
         let mounted = true;
 
-        supabase.auth.getSession().then(({ data }) => {
+        async function loadSession() {
+            const { data: { session } } = await supabase.auth.getSession();
             if (!mounted) return;
-            setSession(data.session);
+
+            if (!session) {
+                setSession(null);
+                setLoading(false);
+                return;
+            }
+
+            // validate session with supabase
+            const { data: { user }, error } = await supabase.auth.getUser();
+
+            if (!mounted) return;
+
+            if (error || !user) {
+                // session exists locally but user no longer exists
+                await supabase.auth.signOut();
+                setSession(null);
+            } else {
+                setSession(session);
+            }
+
             setLoading(false);
-        });
+        }
+
+        loadSession();
 
         const { data: {subscription} } = supabase.auth.onAuthStateChange(
             (_event, session) => {

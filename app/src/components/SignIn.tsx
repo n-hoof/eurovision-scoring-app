@@ -29,10 +29,11 @@ export default function SignIn() {
   return (
     <form className={styles.formWidget} onSubmit={handleLogin}>
       <div className={styles.formGroup}>
+        <label>Email</label>
         <input
           className={styles.inputField}
           type="email"
-          placeholder="Your email"
+          placeholder="Enter your email address"
           value={email}
           required
           onChange={(e) => setEmail(e.target.value)}

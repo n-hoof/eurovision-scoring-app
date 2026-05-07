@@ -7,19 +7,23 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import PublicProfile from "./pages/PublicProfile";
 import Community from "./pages/Community";
+import Results from "./pages/Results";
+import styles from "./styles/ScoresNeon.module.css";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <div className={styles.fog}></div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />}/>
+        <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/my-scores" element={<MyScores />} />
         <Route path="/my-scores/esc/:year" element={<MyScoresYearESC />} />
         <Route path="/my-scores/pze/:year" element={<MyScoresYearPZE />} />
         <Route path="/user/:user_id" element={<PublicProfile />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/results" element={<Results />} />
       </Routes>
     </BrowserRouter>
   );

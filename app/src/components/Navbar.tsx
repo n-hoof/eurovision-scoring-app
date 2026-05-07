@@ -15,6 +15,7 @@ export default function Navbar() {
         <Link to="/my-scores" className="nav-link">My Scores</Link>
         <Link to="/profile" className="nav-link">My Profile</Link>
         <Link to="/community" className="nav-link">Community</Link>
+        <Link to="/results" className="nav-link">Results & Scores</Link>
       </div>
 
       <div className="navbar-user">

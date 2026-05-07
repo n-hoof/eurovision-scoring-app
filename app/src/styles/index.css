@@ -177,3 +177,41 @@ button:hover, .button:hover {
   background-color: rgba(255,0,255,0.15);
   box-shadow: 0 0 12px #ff00ff, 0 0 20px #00eaff;
 }
+
+/* ---------------- SCROLLBAR ---------------- */
+.scrollbarPink {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent; /* Firefox default hidden */
+}
+
+/* Chrome, Edge, Safari */
+.scrollbarPink::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbarPink::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbarPink::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+/* 👇 SHOW ON HOVER */
+.scrollbarPink:hover {
+  scrollbar-color: rgba(255, 0, 255, 0.25) rgba(0, 0, 0, 0.1);
+}
+
+.scrollbarPink:hover::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.scrollbarPink:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 0, 255, 0.25);
+}
+
+.scrollbarPink:hover::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 0, 255, 0.4);
+}

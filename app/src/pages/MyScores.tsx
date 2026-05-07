@@ -1,11 +1,10 @@
 import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import styles from "../styles/MyScores.module.css";
+import { ESC_YEARS, PZE_YEARS } from "../constants/years";
 
 export default function MyScores() {
     const { user, loading } = useAuth();
-    const ESC_YEARS = ["2025", "2024", "2023", "2022"];
-    const PZE_YEARS = ["2026"];
 
     if (loading) return <div>Loading...</div>;
     if (!user) return <Navigate to="/" />; 

@@ -9,7 +9,7 @@ export default function Dashboard() {
   if (loading) return <div className={styles.loading}>Loading...</div>;
 
   return (
-    <div className={styles.dashboardWrapper}>
+    <div className={styles.dashboardWrapper}>      
       <h1 className={styles.welcomeText}>
         Welcome to the show, <span className={styles.username}>{profile?.username}</span>
       </h1>
@@ -18,10 +18,10 @@ export default function Dashboard() {
 
       <button
         className={styles.crtButton}
-        onClick={() => navigate("/my-scores/pze/2026")}
+        onClick={() => navigate("/results")}
       >
         <div className={styles.buttonMain}>PZE 2026</div>
-        <div className={styles.buttonSub}>SCORE THE GRAND FINAL NOW</div>
+        <div className={styles.buttonSub}>SEE THE FINAL RESULTS</div>
       </button>
     </div>
   );

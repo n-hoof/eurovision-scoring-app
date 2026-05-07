@@ -6,7 +6,11 @@ import { usePzeUserScores } from "../queries/usePzeUserScores";
 import { usePzeInitScoring } from "../queries/usePzeInitScoring";
 import { usePzeUpdateScore } from "../queries/usePzeUpdateScore";
 import { PzeScorecard } from "./PzeScorecard";
-import styles from "../styles/ScoresNeon.module.css";
+import styles from "../styles/UserScoresTable.module.css";
+import commentStyles from "../styles/PublicScoresTable.module.css";
+import Comments from "./Comments";
+import WriteCommentBox from "./WriteCommentBox";
+import CommentIndicator from "./CommentIndicator";
 
 type Props = {
   year: number;
@@ -16,9 +20,11 @@ type Props = {
 export default function UserScoresTablePZE({ year, round }: Props) {
   const { user } = useAuth();
   const [active, setActive] = useState<PzeUserScore | null>(null);
+  const [activeCommentsId, setActiveCommentsId] = useState<number | null>(null);
 
   const status = usePzeScoringStatus(user!.id, year, round);
   const hasStarted = status.data === true;
+  const contest = "pze";
 
   const scores = usePzeUserScores(user!.id, year, round, hasStarted);
 
@@ -28,17 +34,11 @@ export default function UserScoresTablePZE({ year, round }: Props) {
   /* -------------------- STATUS STATES -------------------- */
 
   if (status.isLoading) {
-    return (
-      <div style={{ color: "#ff00ff", marginTop: "2rem" }}>
-        Checking scoring status…
-      </div>
-    );
+    return <div>Checking scoring status…</div>;
   }
 
   if (status.isError) {
-    return (
-      <div style={{ color: "#ff0044" }}>Failed to load scoring status</div>
-    );
+    return <div>Failed to load scoring status</div>;
   }
 
   /* -------------------- NOT STARTED -------------------- */
@@ -67,56 +67,92 @@ export default function UserScoresTablePZE({ year, round }: Props) {
   /* -------------------- SCORES LOADING -------------------- */
 
   if (scores.isLoading) {
-    return (
-      <div style={{ color: "#00eaff", marginTop: "2rem" }}>Loading scores…</div>
-    );
+    return <div>Loading scores…</div>;
   }
 
   if (scores.isError) {
-    return <div style={{ color: "#ff0044" }}>Failed to load scores</div>;
+    return <div>Failed to load scores</div>;
   }
 
   /* -------------------- TABLE -------------------- */
+  const activeCommentsData = scores.data?.find(
+    (s) => s.id === activeCommentsId,
+  );
 
   return (
     <>
-      <div className={styles.tableCenter}>
-        <div className={styles.crt}>
-          <table className={styles.neonTable}>
-            <thead className={styles.neonHeader}>
+      <div className={commentStyles.container}>
+        <div className={`${commentStyles.comments_panel} scrollbarPink`}>
+          <h3>Comments</h3>
+          {activeCommentsId === null ? (
+            <div className={commentStyles.noScoreSelected}>
+              Select a score to see comments
+            </div>
+          ) : (
+            <>
+              <h4>
+                {activeCommentsData?.artist ?? ""}
+                {" - "}
+                {activeCommentsData?.song_title ?? ""}
+              </h4>
+              <Comments
+                comments={activeCommentsData?.comments ?? []}
+                user_id={user!.id}
+                year={year}
+                round={round}
+                contest={contest}
+              />
+              <WriteCommentBox
+                scoreId={activeCommentsId}
+                contest={contest}
+                onCommentAdded={() => scores.refetch()}
+              />
+            </>
+          )}
+        </div>
+        <div className={`${styles.tableWrapper} scrollbarPink`}>
+          <table className={styles.table}>
+            <thead>
               <tr>
-                <th>Competitor</th>
+                <th rowSpan={2}>Entry</th>
+                <th colSpan={4}>Score Breakdown</th>
+                <th rowSpan={2}>Total</th>
+                <th rowSpan={2}></th>
+              </tr>
+              <tr>
                 <th>Song</th>
                 <th>Costume</th>
                 <th>Staging</th>
                 <th>Performance</th>
-                <th>Total</th>
-                <th></th>
               </tr>
             </thead>
 
             <tbody>
               {scores.data!.map((s) => (
-                <tr key={s.entry_id} className={styles.neonRow}>
-                  <td className={styles.artist}>
+                <tr
+                  key={s.entry_id}
+                  className={
+                    activeCommentsId === s.id
+                      ? `${commentStyles.row} ${commentStyles.active}`
+                      : styles.row
+                  }
+                  onClick={() =>
+                    setActiveCommentsId((prev) => (prev === s.id ? null : s.id))
+                  }
+                  style={{ cursor: "pointer" }}
+                >
+                  <td>
                     {s.artist} - "{s.song_title}"
+                    <CommentIndicator comments={s.comments} />
                   </td>
 
-                  <td className={styles.score}>
-                    {s.is_scored ? s.song_score : "-"}
-                  </td>
-                  <td className={styles.score}>
-                    {s.is_scored ? s.costume_score : "-"}
-                  </td>
-                  <td className={styles.score}>
-                    {s.is_scored ? s.staging_score : "-"}
-                  </td>
-                  <td className={styles.score}>
-                    {s.is_scored ? s.performance_score : "-"}
-                  </td>
+                  <td>{s.is_scored ? s.song_score : "-"}</td>
+                  <td>{s.is_scored ? s.costume_score : "-"}</td>
+                  <td>{s.is_scored ? s.staging_score : "-"}</td>
+                  <td>{s.is_scored ? s.performance_score : "-"}</td>
 
-                  <td className={styles.total}>
-                    {s.is_scored ? s.total : "Not scored yet"}
+                  <td className={s.is_scored ? styles.total_score : ""}>
+                    {s.is_scored ? s.total : "-"}
                   </td>
 
                   <td>

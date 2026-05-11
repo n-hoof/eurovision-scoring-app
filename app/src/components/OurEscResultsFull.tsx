@@ -15,7 +15,8 @@ export default function OurEscResultsFull({ year, round }: Props) {
         error,
     } = useEscUserResults(year, round);
 
-    if (isNaN(year) || year > 2025) return <div>Choose a year to see results</div>;
+    if (isNaN(year)) return <div>Choose a year to see results</div>;
+    if (year === 2026) return <div>Scoring results not available yet</div>
     
     if (isLoading) return <div>Loading results...</div>;
 

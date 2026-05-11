@@ -8,6 +8,7 @@ export interface EscUserScore {
     country: string;
     flag_url: string;
     round: number; // (1: semi-1, 2: semi-2, 3: final)
+    running_order: number;
     song_score: number;
     costume_score: number;
     staging_score: number;

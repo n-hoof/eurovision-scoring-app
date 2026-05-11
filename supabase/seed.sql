@@ -288,6 +288,82 @@ INSERT INTO "public"."pze_user_scores" ("id", "user_id", "entry_id", "round", "i
 	(50, '98bc267a-5772-46ba-88d3-027b13adea93', 20, 3, true, 2.25, 2.00, 0.75, 0.75),
 	(45, '98bc267a-5772-46ba-88d3-027b13adea93', 11, 3, true, 3.25, 0.50, 0.25, 1.00);
 
+--
+-- Data for Name: esc_entries; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "public"."esc_entries" ("id", "year", "artist", "song_title", "country_id") VALUES
+	(1349, 2026, 'Alis', 'Nân', 1),
+	(1350, 2026, 'Simón', 'Paloma Rumba', 3),
+	(1351, 2026, 'Delta Goodrem', 'Eclipse', 5),
+	(1352, 2026, 'Cosmó', 'Tanzschein', 4),
+	(1353, 2026, 'Jiva', 'Just Go', 6),
+	(1354, 2026, 'Essyla', 'Dancing on the Ice', 8),
+	(1355, 2026, 'Dara', 'Bangaranga', 9),
+	(1356, 2026, 'Lelek', 'Andromeda', 25),
+	(1357, 2026, 'Antigoni', 'Jalla', 12),
+	(1358, 2026, 'Daniel Zizka', 'Crossroads', 14),
+	(1359, 2026, 'Søren Torpegaard Lund', 'Før vi går hjem', 16),
+	(1360, 2026, 'Vanilla Ninja', 'Too Epic to Be True', 17),
+	(1361, 2026, 'Linda Lampenius and Pete Parkkonen', 'Liekinheitin', 20),
+	(1362, 2026, 'Monroe', 'Regarde!', 21),
+	(1363, 2026, 'Bzikebi', 'On Replay', 23),
+	(1364, 2026, 'Sarah Engels', 'Fire', 15),
+	(1365, 2026, 'Akylas', 'Ferto (Φέρτο)', 24),
+	(1366, 2026, 'Noam Bettan', 'Michelle', 29),
+	(1367, 2026, 'Sal Da Vinci', 'Per sempre sì', 30),
+	(1368, 2026, 'Atvara', 'Ēnā', 31),
+	(1369, 2026, 'Lion Ceccah', 'Sólo quiero más', 32),
+	(1370, 2026, 'Eva Marija', 'Mother Nature', 33),
+	(1371, 2026, 'Aidan', 'Bella', 34),
+	(1372, 2026, 'Satoshi', 'Viva, Moldova!', 35),
+	(1373, 2026, 'Tamara Živković', 'Nova zora (Нова зора)', 37),
+	(1374, 2026, 'Jonas Lovv', 'Ya Ya Ya', 42),
+	(1375, 2026, 'Alicja', 'Pray', 43),
+	(1376, 2026, 'Bandidos do Cante', 'Rosa', 44),
+	(1377, 2026, 'Alexandra Căpitănescu', 'Choke Me', 45),
+	(1378, 2026, 'Senhit', 'Superstar', 47),
+	(1379, 2026, 'Lavina', 'Kraj mene (Крај мене)', 48),
+	(1380, 2026, 'Felicia', 'My System', 52),
+	(1381, 2026, 'Veronica Fusaro', 'Alice', 11),
+	(1382, 2026, 'Leléka', 'Ridnym (Рідним)', 54),
+	(1383, 2026, 'Look Mum No Computer', 'Eins, Zwei, Drei', 22);
+--
+-- Data for Name: esc_real_scores; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "public"."esc_real_scores" ("id", "entry_id", "jury", "televote", "place", "running_order", "round") VALUES
+	(947, 1380, NULL, NULL, NULL, 2, 1),
+	(948, 1356, NULL, NULL, NULL, 3, 1),
+	(949, 1365, NULL, NULL, NULL, 4, 1),
+	(950, 1376, NULL, NULL, NULL, 5, 1),
+	(951, 1363, NULL, NULL, NULL, 6, 1),
+	(952, 1361, NULL, NULL, NULL, 7, 1),
+	(953, 1373, NULL, NULL, NULL, 8, 1),
+	(954, 1360, NULL, NULL, NULL, 9, 1),
+	(955, 1366, NULL, NULL, NULL, 10, 1),
+	(956, 1354, NULL, NULL, NULL, 11, 1),
+	(957, 1369, NULL, NULL, NULL, 12, 1),
+	(958, 1378, NULL, NULL, NULL, 13, 1),
+	(959, 1375, NULL, NULL, NULL, 14, 1),
+	(960, 1379, NULL, NULL, NULL, 15, 1),
+	(961, 1353, NULL, NULL, NULL, 2, 2),
+	(962, 1377, NULL, NULL, NULL, 3, 2),
+	(963, 1370, NULL, NULL, NULL, 4, 2),
+	(964, 1358, NULL, NULL, NULL, 5, 2),
+	(965, 1350, NULL, NULL, NULL, 6, 2),
+	(966, 1381, NULL, NULL, NULL, 7, 2),
+	(967, 1357, NULL, NULL, NULL, 8, 2),
+	(968, 1368, NULL, NULL, NULL, 9, 2),
+	(969, 1359, NULL, NULL, NULL, 10, 2),
+	(970, 1351, NULL, NULL, NULL, 11, 2),
+	(971, 1382, NULL, NULL, NULL, 12, 2),
+	(972, 1349, NULL, NULL, NULL, 13, 2),
+	(973, 1371, NULL, NULL, NULL, 14, 2),
+	(974, 1374, NULL, NULL, NULL, 15, 2),
+	(975, 1372, NULL, NULL, NULL, 1, 1),
+	(976, 1355, NULL, NULL, NULL, 1, 2);
+
 
 
 --

@@ -23,7 +23,7 @@ export default function MyScoresYearESC() {
             <div className={styles.pageWrapper}>
                 <h1 className={styles.neonTitle}>Eurovision {year}</h1>
 
-                <RoundSelectButton round={selectedRound} onChange={setSelectedRound} />
+                <RoundSelectButton round={selectedRound} onChange={setSelectedRound} disableFinal={year==="2026"}/>
 
                 <UserScoresTableESC year={parseInt(year)} round={selectedRound} />
 

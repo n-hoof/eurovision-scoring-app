@@ -3,21 +3,20 @@ import { supabase } from "../supabaseClient";
 import { escUserScoresKey } from "./queryKeys";
 import type { EscUserScore } from "../types/EscUserScore";
 
-
 export function useEscUserScores(
-    user_id: string,
-    year: number,
-    round: number,
-    enabled: boolean
+  user_id: string,
+  year: number,
+  round: number,
+  enabled: boolean,
 ) {
-    return useQuery({
-        queryKey: escUserScoresKey(user_id, year, round),
-        enabled,
-        queryFn: async (): Promise<EscUserScore[]> => {
-            const { data, error } = await supabase
-                .from('esc_user_scores')
-                .select(
-                    `
+  return useQuery({
+    queryKey: escUserScoresKey(user_id, year, round),
+    enabled,
+    queryFn: async (): Promise<EscUserScore[]> => {
+      const { data, error } = await supabase
+        .from("esc_user_scores")
+        .select(
+          `
                     id,
                     entry_id,
                     song_score,
@@ -32,7 +31,8 @@ export function useEscUserScores(
                     ...countries!inner(
                         country,
                         flag_url
-                    )
+                    ),
+                    ...esc_real_scores!inner(running_order)
                     ),
                     esc_comments(
                     id,
@@ -43,29 +43,33 @@ export function useEscUserScores(
                     ...profiles!inner(username)
                     )
                     `,
-                )
-                .eq('user_id', user_id)
-                .eq('round', round)
-                .eq('esc_entries.year', year);
+        )
+        .eq("user_id", user_id)
+        .eq("round", round)
+        .eq("esc_entries.esc_real_scores.round", round)
+        .eq("esc_entries.year", year);
 
-            if (error) throw error;
+      if (error) throw error;
 
-            return data.map((s) => ({
-                id: s.id,
-                entry_id: s.entry_id,
-                round: s.round,
-                song_score: s.song_score,
-                costume_score: s.costume_score,
-                staging_score: s.staging_score,
-                performance_score: s.performance_score,
-                total: s.total,
-                is_scored: s.is_scored,
-                artist: s.artist,
-                song_title: s.song_title,
-                country: s.country,
-                flag_url: s.flag_url,
-                comments: s.esc_comments ?? [],
-            }));
-        }
-    });
+      const mapped = data.map((s) => ({
+        id: s.id,
+        entry_id: s.entry_id,
+        round,
+        running_order: s.running_order,
+        song_score: s.song_score,
+        costume_score: s.costume_score,
+        staging_score: s.staging_score,
+        performance_score: s.performance_score,
+        total: s.total,
+        is_scored: s.is_scored,
+        artist: s.artist,
+        song_title: s.song_title,
+        country: s.country,
+        flag_url: s.flag_url,
+        comments: s.esc_comments ?? [],
+      }));
+
+      return mapped.sort((a, b) => a.running_order - b.running_order);
+    },
+  });
 }

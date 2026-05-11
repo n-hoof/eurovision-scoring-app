@@ -18,10 +18,10 @@ export default function Dashboard() {
 
       <button
         className={styles.crtButton}
-        onClick={() => navigate("/results")}
+        onClick={() => navigate("/my-scores/esc/2026")}
       >
-        <div className={styles.buttonMain}>PZE 2026</div>
-        <div className={styles.buttonSub}>SEE THE FINAL RESULTS</div>
+        <div className={styles.buttonMain}>ESC 2026</div>
+        <div className={styles.buttonSub}>SCORE SEMI-FINAL 1</div>
       </button>
     </div>
   );

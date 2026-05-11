@@ -308,3 +308,14 @@
   color: #101010;
   box-shadow: 0 0 6px #ff00ff;
 }
+
+.roundSelect button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.roundSelect button:disabled:hover {
+  background-color: transparent;
+  box-shadow: none;
+}

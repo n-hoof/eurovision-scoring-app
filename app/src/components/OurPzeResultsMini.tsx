@@ -23,7 +23,7 @@ export default function OurPzeResultsMini({ year, round }: Props) {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <em>
         <h2 className={styles.title}>
           PZE {year}{" "}

@@ -109,3 +109,43 @@
   50% { box-shadow: 0 0 25px #00eaff, 0 0 50px #ff00ff; }
   100% { box-shadow: 0 0 20px #00eaff, 0 0 40px #ff00ff; }
 }
+
+@media (max-width: 768px) {
+
+  .dashboardWrapper {
+    padding: 1rem;
+    gap: 2rem;
+  }
+
+  .welcomeText {
+    font-size: 2rem;
+  }
+
+  .currentEvents {
+    font-size: 1.5rem;
+  }
+
+  .crtButton {
+    width: 100%;
+    padding: 1.5rem 1rem;
+  }
+
+  .buttonMain {
+    font-size: 2rem;
+  }
+
+  .buttonSub {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .welcomeText {
+    font-size: 1.5rem;
+  }
+
+  .buttonMain {
+    font-size: 1.5rem;
+  }
+}

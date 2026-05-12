@@ -75,7 +75,9 @@ export default function UserScoresTableESC({ year, round }: Props) {
   }
 
   /* -------------------- TABLE -------------------- */
-  const activeCommentsData = scores.data?.find((s) => s.id === activeCommentsId);
+  const activeCommentsData = scores.data?.find(
+    (s) => s.id === activeCommentsId,
+  );
 
   return (
     <>

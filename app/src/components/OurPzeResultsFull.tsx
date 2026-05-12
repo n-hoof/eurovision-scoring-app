@@ -25,7 +25,7 @@ export default function OurPzeResultsFull({ year, round }: Props) {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <em>
         <h2 className={styles.title}>
           MyVision

@@ -26,7 +26,7 @@ export default function OurEscResultsFull({ year, round }: Props) {
     }
 
     return (
-    <div>
+    <div className={styles.container}>
       <em>
         <h2 className={styles.title}>
           MyVision

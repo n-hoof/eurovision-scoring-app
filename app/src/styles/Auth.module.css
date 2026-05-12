@@ -124,3 +124,16 @@
   95% { opacity: 0.4; }
   97% { opacity: 0.9; }
 }
+
+@media (max-width: 768px) {
+
+  .authWrapper {
+    width: 95%;
+    margin-top: 2rem;
+    padding: 1.5rem;
+  }
+
+  .authTitle {
+    font-size: 1.6rem;
+  }
+}

@@ -1,6 +1,8 @@
 .container {
   display: flex;
   gap: 20px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* ---------------- SECTION TITLE ---------------- */
@@ -16,8 +18,13 @@
 
 /* ---------------- TABLE WRAPPER ---------------- */
 .tableWrapper {
-  margin: 0 auto;
   width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+
+  -webkit-overflow-scrolling: touch;
+
+  padding: 0 0.5rem;
 
   border-radius: 6px;
   margin-bottom: 10rem;
@@ -25,36 +32,52 @@
 
 /* ---------------- TABLE ---------------- */
 .table {
-  width: 100%;
+  width: max-content;
+  min-width: 100%;
   border-collapse: collapse;
 }
 
 /* ---------------- HEADERS ---------------- */
-.table th {
+.table thead tr:first-child th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+
+  height: 48px;
+
   padding: 0.75rem 1rem;
+
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+
   color: #ffffffd2;
   background: rgb(59, 0, 59);
   letter-spacing: 0.5px;
 
-  position: sticky;
-  top: 0;
-}
-
-.table thead tr:first-child th {
   border-bottom: none;
-  font-weight: 700;
-  text-transform: uppercase;
 }
 
 .table thead tr:nth-child(2) th {
-  border-top: none;
+  position: sticky;
+  top: 48px;
+
+  z-index: 2;
+
+  height: 40px;
+
+  padding: 0.5rem 1rem;
+
+  text-align: center;
+
   font-size: 0.8rem;
   text-transform: uppercase;
 
-  position: sticky;
-  top: 44px;
+  color: #ffffffd2;
+  background: rgb(59, 0, 59);
+  letter-spacing: 0.5px;
+
+  border-top: none;
 }
 
 .table thead tr:first-child th:first-child {
@@ -285,4 +308,42 @@
   background-color: rgba(255, 0, 255, 0.12);
   cursor: not-allowed;
   color: rgba(255, 255, 255, 0.493);
+}
+
+
+/* ---------------- MOBILE BREAKPOINT ---------------- */
+@media (max-width: 768px) {
+
+  .container {
+    flex-direction: column;
+  }
+  .table {
+    min-width: 700px;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .table thead tr:first-child th {
+    height: 42px;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .table thead tr:nth-child(2) th {
+    top: 42px;
+    height: 34px;
+    padding: 0.35rem;
+    font-size: 0.65rem;
+  }
+
+  .flag {
+    width: 18px;
+    height: 12px;
+    margin-right: 6px;
+  }
 }

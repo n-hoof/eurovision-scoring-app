@@ -124,3 +124,19 @@
   95% { opacity: 0.4; }
   97% { opacity: 0.9; }
 }
+
+@media (max-width: 768px) {
+
+  .profileWrapper {
+    width: 95%;
+    padding: 1.25rem;
+  }
+
+  .profileTitle {
+    font-size: 1.8rem;
+  }
+
+  .buttonDelete {
+    width: 100%;
+  }
+}

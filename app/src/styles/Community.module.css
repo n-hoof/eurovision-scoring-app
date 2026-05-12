@@ -18,3 +18,15 @@
     0 0 6px rgba(255, 0, 255, 0.8),
     0 0 12px rgba(255, 0, 255, 0.4);
 }
+
+@media (max-width: 768px) {
+
+  .container {
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}

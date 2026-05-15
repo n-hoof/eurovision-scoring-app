@@ -1,0 +1,1 @@
+export type ToolTipId = "song" | "costume" | "performance" | "staging" | null;

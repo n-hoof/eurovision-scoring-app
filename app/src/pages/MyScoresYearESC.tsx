@@ -8,7 +8,7 @@ import styles from "../styles/ScoresNeon.module.css";
 export default function MyScoresYearESC() {
     const { year } = useParams();
     const { user, loading } = useAuth();
-    const [selectedRound, setSelectedRound] = useState<1 | 2 | 3>(2);
+    const [selectedRound, setSelectedRound] = useState<1 | 2 | 3>(3);
 
     if (loading) return <div>Loading...</div>;
     if (!user || !year) return <Navigate to="/" />;
@@ -23,7 +23,7 @@ export default function MyScoresYearESC() {
             <div className={styles.pageWrapper}>
                 <h1 className={styles.neonTitle}>Eurovision {year}</h1>
 
-                <RoundSelectButton round={selectedRound} onChange={setSelectedRound} disableFinal={year==="2026"}/>
+                <RoundSelectButton round={selectedRound} onChange={setSelectedRound} />
 
                 <UserScoresTableESC year={parseInt(year)} round={selectedRound} />
 

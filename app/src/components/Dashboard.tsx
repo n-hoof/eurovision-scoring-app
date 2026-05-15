@@ -24,7 +24,7 @@ export default function Dashboard() {
         onClick={() => navigate("/my-scores/esc/2026")}
       >
         <div className={styles.buttonMain}>Eurovision 2026</div>
-        <div className={styles.buttonSub}>SCORE SEMI-FINAL 2</div>
+        <div className={styles.buttonSub}>SCORE THE GRAND FINAL</div>
       </button>
     </div>
   );

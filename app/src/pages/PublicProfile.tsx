@@ -11,7 +11,7 @@ import PublicScoresTableESC from "../components/PublicScoresTableESC";
 
 export default function PublicProfile() {
   const { user_id } = useParams();
-  const [selectedRound, setSelectedRound] = useState<1 | 2 | 3>(2);
+  const [selectedRound, setSelectedRound] = useState<1 | 2 | 3>(3);
   const [selectedYear, setSelectedYear] = useState("2026");
   const [selectedContest, setSelectedContest] = useState<"esc" | "pze">("esc");
 

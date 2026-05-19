@@ -10,7 +10,7 @@ import CategoryWinners from "../components/CategoryWinners";
 export default function Results() {
   const [selectedRound, setSelectedRound] = useState<1 | 2 | 3>(3);
   const [selectedYear, setSelectedYear] = useState("2026");
-  const [selectedContest, setSelectedContest] = useState<"esc" | "pze">("pze");
+  const [selectedContest, setSelectedContest] = useState<"esc" | "pze">("esc");
 
   let resultsTable;
 

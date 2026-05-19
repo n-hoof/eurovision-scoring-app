@@ -16,7 +16,8 @@ export default function OurEscResultsFull({ year, round }: Props) {
     } = useEscUserResults(year, round);
 
     if (isNaN(year)) return <div>Choose a year to see results</div>;
-    if (year === 2026) return <div>Scoring results not available yet</div>
+    // this is used because eurovision does not reveal scoring data until the grand final is over
+    // if (year === 2026) return <div>Scoring results not available yet</div>
     
     if (isLoading) return <div>Loading results...</div>;
 

@@ -1,31 +1,34 @@
-SELECT setval(
-    pg_get_serial_sequence('esc_real_scores', 'id'),
-    (SELECT MAX(id) FROM esc_real_scores)
-);
+-- this had to be commented after being pushed to prod because i am dumb and the entries are added in seed.sql not in a migration for dev...
+-- so this fails LOL oopsies, so i just keep it commented so my local dev instance can actually spin up whoops
 
-INSERT INTO "public"."esc_real_scores" ("entry_id", "round", "running_order") VALUES
-(1359, 3, 1),
-(1364, 3, 2),
-(1366, 3, 3),
-(1354, 3, 4),
-(1349, 3, 5),
-(1365, 3, 6),
-(1382, 3, 7),
-(1351, 3, 8),
-(1379, 3, 9),
-(1371, 3, 10),
-(1358, 3, 11),
-(1355, 3, 12),
-(1356, 3, 13),
-(1383, 3, 14),
-(1362, 3, 15),
-(1372, 3, 16),
-(1361, 3, 17),
-(1375, 3, 18),
-(1369, 3, 19),
-(1380, 3, 20),
-(1357, 3, 21),
-(1367, 3, 22),
-(1374, 3, 23),
-(1377, 3, 24),
-(1352, 3, 25);
+-- SELECT setval(
+--     pg_get_serial_sequence('esc_real_scores', 'id'),
+--     (SELECT MAX(id) FROM esc_real_scores)
+-- );
+
+-- INSERT INTO "public"."esc_real_scores" ("entry_id", "round", "running_order") VALUES
+-- (1359, 3, 1),
+-- (1364, 3, 2),
+-- (1366, 3, 3),
+-- (1354, 3, 4),
+-- (1349, 3, 5),
+-- (1365, 3, 6),
+-- (1382, 3, 7),
+-- (1351, 3, 8),
+-- (1379, 3, 9),
+-- (1371, 3, 10),
+-- (1358, 3, 11),
+-- (1355, 3, 12),
+-- (1356, 3, 13),
+-- (1383, 3, 14),
+-- (1362, 3, 15),
+-- (1372, 3, 16),
+-- (1361, 3, 17),
+-- (1375, 3, 18),
+-- (1369, 3, 19),
+-- (1380, 3, 20),
+-- (1357, 3, 21),
+-- (1367, 3, 22),
+-- (1374, 3, 23),
+-- (1377, 3, 24),
+-- (1352, 3, 25);

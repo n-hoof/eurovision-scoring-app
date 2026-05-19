@@ -1,5 +1,5 @@
 import UserList from "../components/UserList";
-import OurPzeResultsMini from "../components/OurPzeResultsMini";
+import OurEscResultsMini from "../components/OurEscResultsMini";
 import styles from "../styles/Community.module.css";
 
 export default function Community() {
@@ -8,7 +8,7 @@ export default function Community() {
       {<UserList />}
       <div>
         <h2 className={styles.title}>Recent Results</h2>
-      {<OurPzeResultsMini year={2026} round={3} />}
+        {<OurEscResultsMini year={2026} round={3} />}
       </div>
     </div>
   );

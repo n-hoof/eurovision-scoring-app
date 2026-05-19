@@ -34,8 +34,6 @@ export default function CategoryWinners({ contest, year, round }: Props) {
     favStg = <EscBestStg year={year} round={round} />;
     favPerf = <EscBestPerf year={year} round={round} />;
     favCost = <EscBestCost year={year} round={round} />;
-
-    if (year > 2025) return;
   }
 
   return (
